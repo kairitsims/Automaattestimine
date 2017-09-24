@@ -4,14 +4,20 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import ee.ttu.IAY0361.main.Weather;
 
 public class WeatherTest {
 	
-	Weather weather = new Weather();
+	Weather weather;
 	
+	@Before
+	public void setUp() throws Exception {
+		weather = new Weather();
+	}
+		
 	@Test
 	public void testIfTodaysDataIsAvailable() {
 		Date date = new Date();
@@ -27,38 +33,19 @@ public class WeatherTest {
 	}
 	
 	@Test
-	public void testCoordinatesAreAvailable() {
+	public void testIfCoordinatesAreAvailable() {
 		//koordinaadid on kujul lat: 59.437, lon: 24.7535
 		assertNotNull(weather.getCoordinates());
 		assertTrue(weather.getCoordinates().contains("lat:"));
 		assertTrue(weather.getCoordinates().contains("lon:"));
 		assertTrue(weather.getCoordinates().length() <= 26);
-		
 	}
 	
 	@Test
-	public void testIfMinTempIsAvailable() {
-		fail("Not yet implemented");
+	public void testIfMinTemperatureIsLowerThanMaxTemperature() {
+		assertTrue(weather.getTodayPlusOneMin() < weather.getTodayPlusOneMax());
+		assertTrue(weather.getTodayPlusTwoMin() < weather.getTodayPlusTwoMax());	
+		assertTrue(weather.getTodayPlusThreeMin() < weather.getTodayPlusThreeMax());	
 	}
 	
-	@Test
-	public void testIfMaxTempIsAvilable() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	public void testIfMaxTempIsGreaterThanMinTemp() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	public void testIfCoordinatesAreAvilable() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	public void testIfCoordinatesAreInRightForm() {
-		fail("Not yet implemented");
-	}
-
 }

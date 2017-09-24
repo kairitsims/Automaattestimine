@@ -10,9 +10,33 @@ public class Weather {
 	private Date todayPlusThreeDate;
 	private String coordinates;
 	private double currentTemperature;
+	private double todayPlusOneMin;
+	private double todayPlusOneMax;
+	private double todayPlusTwoMin;
+	private double todayPlusTwoMax;
+	private double todayPlusThreeMin;
+	private double todayPlusThreeMax;
 	
 	
 	
+	public double getTodayPlusOneMin() {
+		return todayPlusOneMin;
+	}
+	public double getTodayPlusOneMax() {
+		return todayPlusOneMax;
+	}
+	public double getTodayPlusTwoMin() {
+		return todayPlusTwoMin;
+	}
+	public double getTodayPlusTwoMax() {
+		return todayPlusTwoMax;
+	}
+	public double getTodayPlusThreeMin() {
+		return todayPlusThreeMin;
+	}
+	public double getTodayPlusThreeMax() {
+		return todayPlusThreeMax;
+	}
 	public double getCurrentTemperature() {
 		return currentTemperature;
 	}
