@@ -1,15 +1,13 @@
 package ee.ttu.IAY0361.main;
 
-import java.util.Date;
-
 public class Forecast {
 	
+	public String date;
 	public double minTemperature;
 	public double maxTemperature;
-	public Date date;
 	
 	
-	public Forecast(double minTemperature, double maxTemperature, Date date) {
+	public Forecast(double minTemperature, double maxTemperature, String date) {
 		this.minTemperature = minTemperature;
 		this.maxTemperature = maxTemperature;
 		this.date = date;

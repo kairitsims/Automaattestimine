@@ -4,14 +4,14 @@ public class ForecastResponse {
 	
 	public String city;
 	public String units;	
-	public Forecast[] forecast;
+	public Days forecastOfDays;
 	public double coordinatesLon;
 	public double coordinatesLat;
 	
-	public ForecastResponse(String city, String units, Forecast[] forecast, double coordinatesLon, double coordinatesLat) {
+	public ForecastResponse(String city, String units, Days forecastOfDays, double coordinatesLon, double coordinatesLat) {
 		this.city = city;
 		this.units = units;
-		this.forecast = forecast;
+		this.forecastOfDays = forecastOfDays;
 		this.coordinatesLon = coordinatesLon;
 		this.coordinatesLat = coordinatesLat;
 	}
