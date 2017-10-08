@@ -19,8 +19,6 @@ public class RepositoryTest {
    
 
     @Before
-    // runs only once per class (for expensive shared resources/operations)
-    // since the report is only read and not altered, we can initiate one for all the tests.
     public void setUpAllTests() {
         // [given]
         request = new Request("Tallinn", "EE", "metric", "e21ac4bd7a018f490caf6012bd2f904b");

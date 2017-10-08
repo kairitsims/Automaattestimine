@@ -20,7 +20,7 @@ public class Repository {
         JSONObject main = json.getJSONObject("main");
         JSONObject coord = json.getJSONObject("coord");
         
-        WeatherResponse response = new WeatherResponse(json.getString("name"), "metric", main.getDouble("temp"), coord.getDouble("lon"), coord.getDouble("lat"));
+        WeatherResponse response = new WeatherResponse(json.getString("name"), main.getDouble("temp"), coord.getDouble("lon"), coord.getDouble("lat"));
         return response;
     }
 
@@ -30,14 +30,14 @@ public class Repository {
         JSONObject json = Connection.connectHttpURL(url);        
         JSONObject city = json.getJSONObject("city");
         JSONObject coord = city.getJSONObject("coord");
-        JSONArray arr = json.getJSONArray("list"); 
+        JSONArray list = json.getJSONArray("list"); 
 	    
 	    List<JSONObject> dayOne = new ArrayList<JSONObject>();
 	    List<JSONObject> dayTwo = new ArrayList<JSONObject>();
 	    List<JSONObject> dayThree = new ArrayList<JSONObject>();
-	    List<Double> dayOneTemps = new ArrayList();
-	    List<Double> dayTwoTemps = new ArrayList();
-	    List<Double> dayThreeTemps = new ArrayList();
+	    List<Double> dayOneTemps = new ArrayList<Double>();
+	    List<Double> dayTwoTemps = new ArrayList<Double>();
+	    List<Double> dayThreeTemps = new ArrayList<Double>();
 	    
 	    Calendar cal1 = Calendar.getInstance();
 	    cal1.add(Calendar.DATE, 1);
@@ -51,8 +51,8 @@ public class Repository {
 	    String formatted2 = format1.format(cal2.getTime());
 	    String formatted3 = format1.format(cal3.getTime());
 	    
-        for (int i = 0; i < arr.length(); i++) { 
-            JSONObject obj = arr.getJSONObject(i);
+        for (int i = 0; i < list.length(); i++) { 
+            JSONObject obj = list.getJSONObject(i);
             if(obj.get("dt_txt").toString().contains(formatted1)) {
             	dayOne.add(obj);
             }
@@ -85,9 +85,10 @@ public class Repository {
         Forecast forecast1 = new Forecast(Collections.min(dayOneTemps), Collections.max(dayOneTemps), formatted1);
         Forecast forecast2 = new Forecast(Collections.min(dayTwoTemps), Collections.max(dayTwoTemps), formatted2);
         Forecast forecast3 = new Forecast(Collections.min(dayThreeTemps), Collections.max(dayThreeTemps), formatted3);
+        
         Days days = new Days(forecast1, forecast2, forecast3);
         
-        ForecastResponse response = new ForecastResponse(city.getString("name"), "metric", days, coord.getDouble("lon"), coord.getDouble("lat"));
+        ForecastResponse response = new ForecastResponse(city.getString("name"), days, coord.getDouble("lon"), coord.getDouble("lat"));
         return response;
     }
 

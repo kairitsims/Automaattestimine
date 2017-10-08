@@ -8,10 +8,10 @@ public class Request {
 	public String id;
 	
 	public Request(String city, String codeOfCountry, String unit, String id) {
-		this.city = "Tallinn";
-		this.codeOfCountry = "EE";
-		this.unit = "metric";
-		this.id = "e21ac4bd7a018f490caf6012bd2f904b";
+		this.city = city;
+		this.codeOfCountry = codeOfCountry;
+		this.unit = unit;
+		this.id = id;
 	}
 
 }
