@@ -12,6 +12,15 @@ public class Forecast {
 		this.maxTemperature = maxTemperature;
 		this.date = date;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Forecast [date=" + date + ", minTemperature=" + minTemperature + ", maxTemperature=" + maxTemperature
+				+ "]";
+	}
+	
+	
 	
 	
 	

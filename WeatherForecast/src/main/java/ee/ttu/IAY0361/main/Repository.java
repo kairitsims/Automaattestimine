@@ -15,7 +15,7 @@ public class Repository {
 	
 	public WeatherResponse getWeather(Request request) throws IOException, JSONException {
 		
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + request.city +"," + request.codeOfCountry + "&APPID=" + request.id + "&units=" + request.unit;
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + request.city +"," + "&APPID=" + request.id + "&units=" + request.unit;
         JSONObject json = Connection.connectHttpURL(url);
         JSONObject main = json.getJSONObject("main");
         JSONObject coord = json.getJSONObject("coord");
@@ -26,7 +26,7 @@ public class Repository {
 
     public ForecastResponse getForecast(Request request) throws JSONException, IOException {
     	
-    	String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + request.city +"," + request.codeOfCountry + "&APPID=" + request.id + "&units=" + request.unit;
+    	String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + request.city +"," + "&APPID=" + request.id + "&units=" + request.unit;
         JSONObject json = Connection.connectHttpURL(url);        
         JSONObject city = json.getJSONObject("city");
         JSONObject coord = city.getJSONObject("coord");

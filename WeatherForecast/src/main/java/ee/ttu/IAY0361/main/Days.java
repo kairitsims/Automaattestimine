@@ -12,6 +12,14 @@ public class Days {
 		this.day1 = day1;
 		this.day2 = day2;
 		this.day3 = day3;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Days [day1=" + day1 + ", day2=" + day2 + ", day3=" + day3 + "]";
 	}	
+	
+	
 
 }

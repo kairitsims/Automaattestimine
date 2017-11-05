@@ -14,4 +14,12 @@ public class WeatherResponse {
 		this.coordinatesLat = coordinatesLat;
 	}
 
+	@Override
+	public String toString() {
+		return "WeatherResponse [city=" + city + ", temperature=" + temperature + ", coordinatesLon=" + coordinatesLon
+				+ ", coordinatesLat=" + coordinatesLat + "]";
+	}
+	
+	
+
 }
