@@ -4,19 +4,21 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.json.JSONException;
-import org.junit.AfterClass;
+import org.json.simple.parser.ParseException;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import ee.ttu.IAY0361.main.Days;
-import ee.ttu.IAY0361.main.ForecastResponse;
+
+import ee.ttu.IAY0361.data.Days;
+import ee.ttu.IAY0361.data.ForecastResponse;
+import ee.ttu.IAY0361.data.Request;
+import ee.ttu.IAY0361.data.WeatherResponse;
 import ee.ttu.IAY0361.main.InputAsker;
 import ee.ttu.IAY0361.main.OutputWriter;
 import ee.ttu.IAY0361.main.Repository;
-import ee.ttu.IAY0361.main.Request;
-import ee.ttu.IAY0361.main.WeatherResponse;
 
 public class RepositoryTest {
 	
@@ -26,25 +28,26 @@ public class RepositoryTest {
    
     
     @BeforeClass
-    public static void setUpAllTests() throws IOException, JSONException {
+    public static void setUpAllTests() throws IOException, JSONException, ParseException {
         // [given]
     	InputAsker inputAsker = new InputAsker();
     	Repository repository = new Repository();
-        request = new Request(inputAsker.getCity(), "metric", "e21ac4bd7a018f490caf6012bd2f904b");
-        try{
-            // [when]
-            weatherResponse = repository.getWeather(request);
-            forecastResponse = repository.getForecast(request);
-        }catch(Exception e){
-            fail("All test will be ignored, cause: " + e.getMessage());
-        }
-    }
-    
-    @AfterClass
-    public static void write() throws IOException {
     	OutputWriter outputWriter = new OutputWriter();
-    	outputWriter.writeOutputToFile(weatherResponse.toString() + '\n');
-    	outputWriter.writeOutputToFile(forecastResponse.toString()+ '\n');
+    	ArrayList<String> listOfCities = new ArrayList<String>();
+    	//listOfCities = inputAsker.getCityFromConsole();
+    	listOfCities = inputAsker.getCityFromFile();
+    	for(String city: listOfCities) {
+    		request = new Request(city, "metric", "e21ac4bd7a018f490caf6012bd2f904b");
+	        try{
+	            // [when]
+	            weatherResponse = repository.getWeather(request);
+	            forecastResponse = repository.getForecast(request);
+	            outputWriter.writeWeatherOutputToFile(request.city, weatherResponse);
+	        	outputWriter.writeForecastOutputToFile(request.city, forecastResponse);
+	        }catch(Exception e){
+	            fail("All test will be ignored, cause: " + e.getMessage());
+	        }
+    	}
     }
     
     @Test

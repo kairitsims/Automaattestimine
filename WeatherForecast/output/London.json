@@ -1,0 +1,209 @@
+{
+  "city" : "London",
+  "temperature" : 8.82,
+  "coordinatesLon" : -0.13,
+  "coordinatesLat" : 51.51
+}{
+  "city" : "London",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "2017-12-04",
+      "minTemperature" : 0.36,
+      "maxTemperature" : 8.25
+    },
+    "day2" : {
+      "date" : "2017-12-05",
+      "minTemperature" : 3.88,
+      "maxTemperature" : 7.12
+    },
+    "day3" : {
+      "date" : "2017-12-06",
+      "minTemperature" : 4.95,
+      "maxTemperature" : 10.81
+    }
+  },
+  "coordinatesLon" : -0.1258,
+  "coordinatesLat" : 51.5085
+}{
+  "city" : "Dummy",
+  "temperature" : 0.0,
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}{
+  "city" : "Dummy",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day2" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day3" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    }
+  },
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}{
+  "city" : "London",
+  "temperature" : 8.81,
+  "coordinatesLon" : -0.13,
+  "coordinatesLat" : 51.51
+}{
+  "city" : "London",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "2017-12-04",
+      "minTemperature" : 0.36,
+      "maxTemperature" : 8.25
+    },
+    "day2" : {
+      "date" : "2017-12-05",
+      "minTemperature" : 3.88,
+      "maxTemperature" : 7.12
+    },
+    "day3" : {
+      "date" : "2017-12-06",
+      "minTemperature" : 4.95,
+      "maxTemperature" : 10.81
+    }
+  },
+  "coordinatesLon" : -0.1258,
+  "coordinatesLat" : 51.5085
+}{
+  "city" : "Dummy",
+  "temperature" : 0.0,
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}{
+  "city" : "Dummy",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day2" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day3" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    }
+  },
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}{
+  "city" : "Dummy",
+  "temperature" : 0.0,
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}{
+  "city" : "Dummy",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day2" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day3" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    }
+  },
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}{
+  "city" : "London",
+  "temperature" : 8.63,
+  "coordinatesLon" : -0.13,
+  "coordinatesLat" : 51.51
+}{
+  "city" : "London",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "2017-12-04",
+      "minTemperature" : 0.36,
+      "maxTemperature" : 8.25
+    },
+    "day2" : {
+      "date" : "2017-12-05",
+      "minTemperature" : 3.88,
+      "maxTemperature" : 7.12
+    },
+    "day3" : {
+      "date" : "2017-12-06",
+      "minTemperature" : 4.95,
+      "maxTemperature" : 10.81
+    }
+  },
+  "coordinatesLon" : -0.1258,
+  "coordinatesLat" : 51.5085
+}{
+  "city" : "London",
+  "temperature" : 8.59,
+  "coordinatesLon" : -0.13,
+  "coordinatesLat" : 51.51
+}{
+  "city" : "London",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "2017-12-04",
+      "minTemperature" : 0.36,
+      "maxTemperature" : 8.25
+    },
+    "day2" : {
+      "date" : "2017-12-05",
+      "minTemperature" : 3.88,
+      "maxTemperature" : 7.12
+    },
+    "day3" : {
+      "date" : "2017-12-06",
+      "minTemperature" : 4.95,
+      "maxTemperature" : 10.81
+    }
+  },
+  "coordinatesLon" : -0.1258,
+  "coordinatesLat" : 51.5085
+}{
+  "city" : "Dummy",
+  "temperature" : 0.0,
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}{
+  "city" : "Dummy",
+  "forecastOfDays" : {
+    "day1" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day2" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    },
+    "day3" : {
+      "date" : "20-20-20",
+      "minTemperature" : 0.0,
+      "maxTemperature" : 0.0
+    }
+  },
+  "coordinatesLon" : 0.0,
+  "coordinatesLat" : 0.0
+}

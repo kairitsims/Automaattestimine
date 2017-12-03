@@ -1,48 +1,40 @@
 package ee.ttu.IAY0361.main;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import org.json.JSONException;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.json.simple.JSONArray; 
+import org.json.simple.JSONObject;
+
 
 public class InputAsker {
 	
-	public String getCity() throws IOException {
-		System.out.println("Do you wish to enter input form console or from file?");
-		String city = "";
-		Scanner reader = new Scanner(System.in);
-		String answer = reader.nextLine();
-		if(answer.equals("console")) {
-			city = getCityFromConsole();
-		}else if(answer.equals("file")) {
-			city = getCityFromFile();
-		}else {
-			System.out.println("Wrong answer!");
-		}
-		reader.close();
-		return city;
-	}
-	
-	public String getCityFromConsole() {
-    	System.out.println("Enter a city: ");
+	public ArrayList<String> getCityFromConsole() {
+		ArrayList<String> listOfCities = new ArrayList<String>();
+		System.out.println("Enter a city: ");
     	Scanner reader = new Scanner(System.in);
 		String city = reader.nextLine();
+		listOfCities.add(city);
 		reader.close();
-		return city;
+		return listOfCities;
     }
 	
-	public String getCityFromFile() throws IOException {
-		try(BufferedReader br = new BufferedReader(new FileReader("C:/Users/Kairit/Documents/GitHub/Automaattestimine/WeatherForecast/input.txt"))) {
-		    StringBuilder sb = new StringBuilder();
-		    String line = br.readLine();
-		    while (line != null) {
-		        sb.append(line);
-		        sb.append(System.lineSeparator());
-		        line = br.readLine();
-		    }
-		    String city = sb.toString().trim();
-		    return city;
-		}
-    }
-
+	public ArrayList<String> getCityFromFile() throws IOException, ParseException, JSONException {
+		ArrayList<String> listOfCities = new ArrayList<String>();
+		JSONParser parser = new JSONParser();
+        
+        JSONObject object = (JSONObject) parser.parse(new FileReader("C:/Users/Kairit/Documents/GitHub/Automaattestimine/WeatherForecast/input.json"));
+        JSONArray request = (JSONArray) object.get("request");
+        for (Object o : request) {
+        	JSONObject city = (JSONObject) o;
+        	String cityName = (String) city.get("city");
+        	listOfCities.add(cityName);
+        }
+        return listOfCities;
+	}
 }

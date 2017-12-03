@@ -1,0 +1,5 @@
+{ "request": [
+    {"city":"Tallinn"},
+    {"city":"London"},
+    {"city":"Paris"}
+]}

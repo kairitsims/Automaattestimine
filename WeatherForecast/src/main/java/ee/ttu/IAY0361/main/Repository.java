@@ -11,23 +11,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ee.ttu.IAY0361.data.Days;
+import ee.ttu.IAY0361.data.Forecast;
+import ee.ttu.IAY0361.data.ForecastResponse;
+import ee.ttu.IAY0361.data.Request;
+import ee.ttu.IAY0361.data.WeatherResponse;
+
 public class Repository {
 	
 	public WeatherResponse getWeather(Request request) throws IOException, JSONException {
-		
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + request.city +"," + "&APPID=" + request.id + "&units=" + request.unit;
-        JSONObject json = Connection.connectHttpURL(url);
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + request.city + "&APPID=" + request.id + "&units=" + request.unit;
+        JSONObject json = ConnectionMaker.connectHttpURL(url);
         JSONObject main = json.getJSONObject("main");
         JSONObject coord = json.getJSONObject("coord");
-        
         WeatherResponse response = new WeatherResponse(json.getString("name"), main.getDouble("temp"), coord.getDouble("lon"), coord.getDouble("lat"));
         return response;
     }
 
     public ForecastResponse getForecast(Request request) throws JSONException, IOException {
     	
-    	String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + request.city +"," + "&APPID=" + request.id + "&units=" + request.unit;
-        JSONObject json = Connection.connectHttpURL(url);        
+    	String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + request.city + "&APPID=" + request.id + "&units=" + request.unit;
+        JSONObject json = ConnectionMaker.connectHttpURL(url);        
         JSONObject city = json.getJSONObject("city");
         JSONObject coord = city.getJSONObject("coord");
         JSONArray list = json.getJSONArray("list"); 
