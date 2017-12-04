@@ -1,7 +1,11 @@
 package ee.ttu.IAY0361.test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,12 +17,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ee.ttu.IAY0361.data.Days;
+import ee.ttu.IAY0361.data.Forecast;
 import ee.ttu.IAY0361.data.ForecastResponse;
 import ee.ttu.IAY0361.data.Request;
 import ee.ttu.IAY0361.data.WeatherResponse;
 import ee.ttu.IAY0361.main.InputAsker;
 import ee.ttu.IAY0361.main.OutputWriter;
 import ee.ttu.IAY0361.main.Repository;
+import ee.ttu.IAY0361.main.Updater;
 
 public class RepositoryTest {
 	
@@ -29,21 +35,14 @@ public class RepositoryTest {
     
     @BeforeClass
     public static void setUpAllTests() throws IOException, JSONException, ParseException {
-        // [given]
-    	InputAsker inputAsker = new InputAsker();
     	Repository repository = new Repository();
-    	OutputWriter outputWriter = new OutputWriter();
-    	ArrayList<String> listOfCities = new ArrayList<String>();
-    	//listOfCities = inputAsker.getCityFromConsole();
-    	listOfCities = inputAsker.getCityFromFile();
+    	Updater updater = new Updater();
+    	ArrayList<String> listOfCities = updater.getRequests(repository);
     	for(String city: listOfCities) {
     		request = new Request(city, "metric", "e21ac4bd7a018f490caf6012bd2f904b");
 	        try{
-	            // [when]
 	            weatherResponse = repository.getWeather(request);
 	            forecastResponse = repository.getForecast(request);
-	            outputWriter.writeWeatherOutputToFile(request.city, weatherResponse);
-	        	outputWriter.writeForecastOutputToFile(request.city, forecastResponse);
 	        }catch(Exception e){
 	            fail("All test will be ignored, cause: " + e.getMessage());
 	        }
@@ -195,5 +194,20 @@ public class RepositoryTest {
             fail("Test failed, cause: " + e.getMessage());
         }
     }
+    
+    @Test
+	public void testIfEveryInputHasAnOutput() throws IOException, JSONException, ParseException {
+		Repository repositoryMock = mock(Repository.class);
+		Updater update = new Updater();
+		WeatherResponse weatherResponseDummy = new WeatherResponse("Dummy", 0, 0, 0);
+		Forecast forecastDummy = new Forecast(0, 0, "20-20-20");
+		Days daysDummy = new Days(forecastDummy, forecastDummy, forecastDummy);
+		ForecastResponse forecastResponseDummy = new ForecastResponse("Dummy", daysDummy, 0, 0);
+		when(repositoryMock.getWeather(any(Request.class))).thenReturn(weatherResponseDummy);
+		when(repositoryMock.getForecast(any(Request.class))).thenReturn(forecastResponseDummy);
+		int nrOfRequests = update.getRequests(repositoryMock).size();
+		int nrOfOutputFilesCreated= new File("C:/Users/Kairit/Documents/GitHub/Automaattestimine/WeatherForecast/output").listFiles().length;
+		assertEquals(nrOfRequests, nrOfOutputFilesCreated);
+	}
 	
 }
