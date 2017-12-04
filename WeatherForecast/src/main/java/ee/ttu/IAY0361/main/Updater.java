@@ -12,9 +12,7 @@ import ee.ttu.IAY0361.data.WeatherResponse;
 
 public class Updater {
 	
-	public ArrayList<String> getRequests(Repository repository) throws IOException, ParseException, JSONException {
-		InputAsker inputAsker = new InputAsker();
-		OutputWriter outputWriter = new OutputWriter();
+	public ArrayList<String> writeFilesAndReturnListOfCities(Repository repository, InputAsker inputAsker, OutputWriter outputWriter) throws IOException, ParseException, JSONException {
 		ArrayList<String> listOfCities = new ArrayList<String>();
     	//listOfCities = inputAsker.getCityFromConsole();
     	listOfCities = inputAsker.getCityFromFile();

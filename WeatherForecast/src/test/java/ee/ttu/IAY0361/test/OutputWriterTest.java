@@ -1,35 +1,31 @@
 package ee.ttu.IAY0361.test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
 import java.io.IOException;
-
 import org.json.JSONException;
+import org.json.simple.parser.ParseException;
 import org.junit.Test;
-
-import ee.ttu.IAY0361.data.Days;
-import ee.ttu.IAY0361.data.Forecast;
 import ee.ttu.IAY0361.data.ForecastResponse;
 import ee.ttu.IAY0361.data.WeatherResponse;
+import ee.ttu.IAY0361.main.InputAsker;
 import ee.ttu.IAY0361.main.OutputWriter;
+import ee.ttu.IAY0361.main.Repository;
+import ee.ttu.IAY0361.main.Updater;
 
 public class OutputWriterTest {
 
 	@Test
-	public void testFileWriting() throws IOException, JSONException {
+	public void testFileWriting() throws IOException, JSONException, ParseException {
 		OutputWriter outputWriterMock = mock(OutputWriter.class);
+		Updater updater = new Updater();
+		Repository repository = new Repository();
+		InputAsker inputAsker = new InputAsker();
 		
-		WeatherResponse weatherResponseDummy = new WeatherResponse("Dummy", 0, 0, 0);
-		Forecast forecastDummy = new Forecast(0, 0, "20-20-20");
-		Days daysDummy = new Days(forecastDummy, forecastDummy, forecastDummy);
-		ForecastResponse forecastResponseDummy = new ForecastResponse("Dummy", daysDummy, 0, 0);
+		updater.writeFilesAndReturnListOfCities(repository, inputAsker, outputWriterMock);
 		
-		outputWriterMock.writeWeatherOutputToFile(weatherResponseDummy.city, weatherResponseDummy);
-		outputWriterMock.writeForecastOutputToFile(forecastResponseDummy.city, forecastResponseDummy);
-		verify(outputWriterMock).writeWeatherOutputToFile(weatherResponseDummy.city, weatherResponseDummy);
-		verify(outputWriterMock).writeForecastOutputToFile(forecastResponseDummy.city, forecastResponseDummy);
+		verify(outputWriterMock, times(inputAsker.getCityFromFile().size())).writeWeatherOutputToFile(anyString(), any(WeatherResponse.class));
+		verify(outputWriterMock, times(inputAsker.getCityFromFile().size())).writeForecastOutputToFile(anyString(), any(ForecastResponse.class));
 		
 	}
 

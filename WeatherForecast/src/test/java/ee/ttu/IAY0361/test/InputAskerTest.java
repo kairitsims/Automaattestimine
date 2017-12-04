@@ -1,16 +1,10 @@
 package ee.ttu.IAY0361.test;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import java.io.IOException;
-import java.util.ArrayList;
-
 import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
-
 import ee.ttu.IAY0361.main.InputAsker;
 
 public class InputAskerTest {
@@ -22,13 +16,9 @@ public class InputAskerTest {
 	}
 	
 	@Test
-	public void testReadingFromFile() throws IOException, ParseException, JSONException {
-		InputAsker inputAskerMock = mock(InputAsker.class);
-		ArrayList<String> listOfCitiesDummy = new ArrayList<String>();
-		listOfCitiesDummy.add("Tallinn");
-		listOfCitiesDummy.add("Dummy");
-		when(inputAskerMock.getCityFromFile()).thenReturn(listOfCitiesDummy);
-		assertEquals(inputAskerMock.getCityFromFile(), listOfCitiesDummy);
+	public void testInputAskerFromFile() throws IOException, ParseException, JSONException {
+		InputAsker inputAsker = new InputAsker();
+		assertTrue(inputAsker.getCityFromFile().size()>0);
 	}
 
 }

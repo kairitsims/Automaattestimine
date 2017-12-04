@@ -51,19 +51,19 @@ public class Repository {
 	    cal3.add(Calendar.DATE, 3);
 	    
 	    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-	    String formatted1 = format1.format(cal1.getTime());
-	    String formatted2 = format1.format(cal2.getTime());
-	    String formatted3 = format1.format(cal3.getTime());
+	    String formattedDate1 = format1.format(cal1.getTime());
+	    String formattedDate2 = format1.format(cal2.getTime());
+	    String formattedDate3 = format1.format(cal3.getTime());
 	    
         for (int i = 0; i < list.length(); i++) { 
             JSONObject obj = list.getJSONObject(i);
-            if(obj.get("dt_txt").toString().contains(formatted1)) {
+            if(obj.get("dt_txt").toString().contains(formattedDate1)) {
             	dayOne.add(obj);
             }
-            else if(obj.get("dt_txt").toString().contains(formatted2)) {
+            else if(obj.get("dt_txt").toString().contains(formattedDate2)) {
             	dayTwo.add(obj);
             }
-            else if(obj.get("dt_txt").toString().contains(formatted3)) {
+            else if(obj.get("dt_txt").toString().contains(formattedDate3)) {
             	dayThree.add(obj);
             }
         }
@@ -86,9 +86,9 @@ public class Repository {
         	dayThreeTemps.add(temp);
         	
         }
-        Forecast forecast1 = new Forecast(Collections.min(dayOneTemps), Collections.max(dayOneTemps), formatted1);
-        Forecast forecast2 = new Forecast(Collections.min(dayTwoTemps), Collections.max(dayTwoTemps), formatted2);
-        Forecast forecast3 = new Forecast(Collections.min(dayThreeTemps), Collections.max(dayThreeTemps), formatted3);
+        Forecast forecast1 = new Forecast(Collections.min(dayOneTemps), Collections.max(dayOneTemps), formattedDate1);
+        Forecast forecast2 = new Forecast(Collections.min(dayTwoTemps), Collections.max(dayTwoTemps), formattedDate2);
+        Forecast forecast3 = new Forecast(Collections.min(dayThreeTemps), Collections.max(dayThreeTemps), formattedDate3);
         
         Days days = new Days(forecast1, forecast2, forecast3);
         

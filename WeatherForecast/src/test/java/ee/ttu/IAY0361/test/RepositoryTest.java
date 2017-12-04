@@ -37,7 +37,9 @@ public class RepositoryTest {
     public static void setUpAllTests() throws IOException, JSONException, ParseException {
     	Repository repository = new Repository();
     	Updater updater = new Updater();
-    	ArrayList<String> listOfCities = updater.getRequests(repository);
+    	InputAsker inputAsker = new InputAsker();
+    	OutputWriter outputWriter = new OutputWriter();
+    	ArrayList<String> listOfCities = updater.writeFilesAndReturnListOfCities(repository, inputAsker, outputWriter);
     	for(String city: listOfCities) {
     		request = new Request(city, "metric", "e21ac4bd7a018f490caf6012bd2f904b");
 	        try{
@@ -199,14 +201,19 @@ public class RepositoryTest {
 	public void testIfEveryInputHasAnOutput() throws IOException, JSONException, ParseException {
 		Repository repositoryMock = mock(Repository.class);
 		Updater update = new Updater();
-		WeatherResponse weatherResponseDummy = new WeatherResponse("Dummy", 0, 0, 0);
+		InputAsker inputAsker = new InputAsker();
+		OutputWriter outputWriter = new OutputWriter();
+		WeatherResponse weatherResponseDummy = new WeatherResponse("Tallinn", 0, 0, 0);
 		Forecast forecastDummy = new Forecast(0, 0, "20-20-20");
 		Days daysDummy = new Days(forecastDummy, forecastDummy, forecastDummy);
-		ForecastResponse forecastResponseDummy = new ForecastResponse("Dummy", daysDummy, 0, 0);
+		ForecastResponse forecastResponseDummy = new ForecastResponse("Tallinn", daysDummy, 0, 0);
+		
 		when(repositoryMock.getWeather(any(Request.class))).thenReturn(weatherResponseDummy);
 		when(repositoryMock.getForecast(any(Request.class))).thenReturn(forecastResponseDummy);
-		int nrOfRequests = update.getRequests(repositoryMock).size();
+		
+		int nrOfRequests = update.writeFilesAndReturnListOfCities(repositoryMock, inputAsker, outputWriter).size();
 		int nrOfOutputFilesCreated= new File("C:/Users/Kairit/Documents/GitHub/Automaattestimine/WeatherForecast/output").listFiles().length;
+		
 		assertEquals(nrOfRequests, nrOfOutputFilesCreated);
 	}
 	
